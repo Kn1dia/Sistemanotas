@@ -1,0 +1,164 @@
+{
+  "compras": [
+    {
+      "mercado": "MARIANI ARTEFATOS DE COURO S.A.",
+      "cnpj": "88612189000114",
+      "endereco": "RUA JULIO DE CASTILHOS, 2400 - SAO PELEGRINO - CEP 95010-002 CAXIAS DO SUL RS F:(54) 3223-2777",
+      "data": "20/03/2013",
+      "hora": "14:28",
+      "itens": [
+        {
+          "codigo": "T085183",
+          "nome": "Tatfi C 6126 FTO 20 ST UN 10N F1",
+          "quantidade": 1,
+          "preco_unitario": 5.0,
+          "preco_total": 5.0,
+          "categoria": "outros"
+        },
+        {
+          "codigo": "052602",
+          "nome": "Lupo 4570 PR 1PR T1",
+          "quantidade": 1,
+          "preco_unitario": 10.56,
+          "preco_total": 10.56,
+          "categoria": "outros"
+        }
+      ],
+      "subtotal": 15.56,
+      "descontos": 1.56,
+      "total_nota": 14.0,
+      "forma_pagamento": "Dinheiro",
+      "data_processamento": "30/01/2026 13:41:12",
+      "modelo_usado": "gemini-2.5-flash"
+    }
+  ],
+  "feed": [
+    {
+      "id": "2896a412",
+      "mercado": "SUPERMERCADO MINAS GERAIS",
+      "data": "30/01/2026",
+      "total": 88.5,
+      "categoria": "alimentos",
+      "itens": [
+        {
+          "nome": "ARROZ BRANCO 5KG",
+          "preco": 25.9,
+          "categoria": "Alimentos"
+        },
+        {
+          "nome": "FEIJÃO CARIOCA 1KG",
+          "preco": 8.5,
+          "categoria": "Alimentos"
+        },
+        {
+          "nome": "DETERGENTE LÍQUIDO 500ML",
+          "preco": 2.5,
+          "categoria": "Limpeza"
+        },
+        {
+          "nome": "CERVEJA LATA 350ML",
+          "preco": 3.5,
+          "categoria": "Bebidas"
+        },
+        {
+          "nome": "PÃO DE FORMA",
+          "preco": 7.5,
+          "categoria": "Alimentos"
+        },
+        {
+          "nome": "LEITE INTEGRAL 1L",
+          "preco": 4.8,
+          "categoria": "Alimentos"
+        }
+      ]
+    },
+    {
+      "id": "ce7306e3",
+      "mercado": "SUPERMERCADO MINAS GERAIS",
+      "data": "30/01/2026",
+      "total": 88.5,
+      "categoria": "alimentos",
+      "itens": [
+        {
+          "nome": "ARROZ BRANCO 5KG",
+          "preco": 25.9,
+          "categoria": "Alimentos"
+        },
+        {
+          "nome": "FEIJÃO CARIOCA 1KG",
+          "preco": 8.5,
+          "categoria": "Alimentos"
+        },
+        {
+          "nome": "DETERGENTE LÍQUIDO 500ML",
+          "preco": 2.5,
+          "categoria": "Limpeza"
+        },
+        {
+          "nome": "CERVEJA LATA 350ML",
+          "preco": 3.5,
+          "categoria": "Bebidas"
+        },
+        {
+          "nome": "PÃO DE FORMA",
+          "preco": 7.5,
+          "categoria": "Alimentos"
+        },
+        {
+          "nome": "LEITE INTEGRAL 1L",
+          "preco": 4.8,
+          "categoria": "Alimentos"
+        }
+      ]
+    }
+  ],
+  "totalGasto": 177.0,
+  "comprasMes": 2,
+  "grafico": [
+    {
+      "name": "Alimentos",
+      "value": 177.0,
+      "color": "#10b981"
+    },
+    {
+      "name": "Bebidas",
+      "value": 0.0,
+      "color": "#f59e0b"
+    },
+    {
+      "name": "Limpeza",
+      "value": 0.0,
+      "color": "#8b5cf6"
+    },
+    {
+      "name": "Farmácia",
+      "value": 0.0,
+      "color": "#ef4444"
+    },
+    {
+      "name": "Combustível",
+      "value": 0.0,
+      "color": "#3b82f6"
+    },
+    {
+      "name": "Restaurante",
+      "value": 0.0,
+      "color": "#f97316"
+    },
+    {
+      "name": "Lazer",
+      "value": 0.0,
+      "color": "#ec4899"
+    },
+    {
+      "name": "Serviços",
+      "value": 0.0,
+      "color": "#06b6d4"
+    },
+    {
+      "name": "Outros",
+      "value": 0.0,
+      "color": "#6b7280"
+    }
+  ]
+}

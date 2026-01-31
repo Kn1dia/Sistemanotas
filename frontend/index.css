@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Configuração Global Simples */
+body {
+  background-color: #0f172a; /* Cor brand-dark direta para evitar erros */
+  color: white;
+  font-family: sans-serif;
+}
