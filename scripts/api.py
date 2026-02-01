@@ -498,6 +498,20 @@ REGRAS OBRIGATÓRIAS:
         # Converte para dicionário
         nota_data = json.loads(json_text)
         
+        # ✅ PROCESSAR DADOS PARA O BANCO
+        # Gerar ID único
+        nota_data['id'] = str(uuid.uuid4())
+        
+        # Formatar data (converter YYYY-MM-DD para DD/MM/YYYY)
+        try:
+            data_obj = datetime.strptime(nota_data.get('data', ''), '%Y-%m-%d')
+            nota_data['data_formatada'] = data_obj.strftime('%d/%m/%Y')
+        except:
+            nota_data['data_formatada'] = datetime.now().strftime('%d/%m/%Y')
+        
+        # Definir categoria principal (renomear 'categoria' para 'categoria_principal')
+        nota_data['categoria_principal'] = nota_data.get('categoria', 'Outros')
+        
         print(f"🎯 Análise concluída: {nota_data.get('mercado', 'N/A')} - R${nota_data.get('total', 0)}")
         
         return nota_data
@@ -676,7 +690,7 @@ async def salvar_nota_no_banco(db: Session, nota_analisada: Dict[str, Any]):
             id=nota_analisada.get('id', str(uuid.uuid4())),
             user_id=user.id,
             mercado=nota_analisada.get('mercado', 'Mercado não informado'),
-            data=nota_analisada.get('data', datetime.now().strftime('%d/%m/%Y')),
+            data=nota_analisada.get('data_formatada', datetime.now().strftime('%d/%m/%Y')),
             total=nota_analisada.get('total', 0.0),
             categoria=nota_analisada.get('categoria_principal', 'Outros'),
             itens=itens_json  # ✅ SALVA COMO STRING JSON
