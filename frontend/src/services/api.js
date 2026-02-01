@@ -1,8 +1,8 @@
 // API Service para SmartSpend-BR
 // Conecta o frontend com o backend FastAPI
 
-const API_BASE_URL = 'http://localhost:8080';
-
+// frontend/src/services/api.js
+const API_BASE_URL = 'https://sistemanotas-production-e01e.up.railway.app'; 
 class ApiService {
   // Método genérico para fazer requisições
   async request(endpoint, options = {}) {
