@@ -3,7 +3,11 @@ Configuração do Banco de Dados SQLite para SmartSpend-BR
 """
 import os
 from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+
+# ✅ CRIAR BASE ANTES DE TUDO
+Base = declarative_base()
 
 # Caminho do banco de dados
 DATABASE_URL = "sqlite:///./smartspend.db"
@@ -32,7 +36,7 @@ def init_db():
     Inicializa o banco de dados criando todas as tabelas
     """
     # Importar modelos aqui para evitar import circular
-    from models import Base, User, Nota
+    from models import User, Nota
     
     # Criar tabelas primeiro
     Base.metadata.create_all(bind=engine)
