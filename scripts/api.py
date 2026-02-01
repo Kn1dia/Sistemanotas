@@ -226,12 +226,27 @@ def calcular_dashboard_data(notas: list) -> Dict[str, Any]:
     for nota in notas:
         # Desserializa itens da nota
         try:
-            itens = json.loads(nota.itens) if isinstance(nota.itens, str) else nota.itens
-        except:
+            if isinstance(nota.itens, str):
+                itens = json.loads(nota.itens)
+            elif isinstance(nota.itens, list):
+                itens = nota.itens
+            else:
+                print(f"⚠️ Tipo inesperado de itens: {type(nota.itens)}")
+                itens = []
+        except json.JSONDecodeError as e:
+            print(f"❌ Erro ao desserializar itens da nota {nota.id}: {e}")
+            print(f"   Conteúdo: {nota.itens[:100] if nota.itens else 'None'}")
+            itens = []
+        except Exception as e:
+            print(f"❌ Erro inesperado ao processar itens: {type(e).__name__} - {e}")
             itens = []
         
         # Agrupa por categoria de CADA ITEM
         for item in itens:
+            if not isinstance(item, dict):
+                print(f"⚠️ Item não é dicionário: {type(item)} - {item}")
+                continue
+                
             categoria_item = item.get('categoria', 'Outros')
             valor_item = float(item.get('valor', 0))
             
@@ -254,8 +269,18 @@ def calcular_dashboard_data(notas: list) -> Dict[str, Any]:
     for nota in notas:
         # Desserializa JSON dos itens
         try:
-            itens = json.loads(nota.itens) if isinstance(nota.itens, str) else nota.itens
-        except:
+            if isinstance(nota.itens, str):
+                itens = json.loads(nota.itens)
+            elif isinstance(nota.itens, list):
+                itens = nota.itens
+            else:
+                print(f"⚠️ Tipo inesperado de itens: {type(nota.itens)}")
+                itens = []
+        except json.JSONDecodeError as e:
+            print(f"❌ Erro ao desserializar itens da nota {nota.id}: {e}")
+            itens = []
+        except Exception as e:
+            print(f"❌ Erro inesperado: {type(e).__name__} - {e}")
             itens = []
         
         compras.append({
@@ -449,7 +474,15 @@ REGRAS OBRIGATÓRIAS:
                     
                 except Exception as e:
                     error_msg = str(e).lower()
-                    print(f"❌ Erro com chave {key_index + 1} + modelo {modelo}: {type(e).__name__}")
+                    error_type = type(e).__name__
+                    print(f"❌ Erro com chave {key_index + 1} + modelo {modelo}: {error_type}")
+                    print(f"   Mensagem: {str(e)[:200]}")  # Primeiros 200 caracteres
+                    
+                    # ClientError geralmente indica problema de autenticação ou permissão
+                    if error_type == "ClientError":
+                        print(f"⚠️ ClientError - possível problema com a chave API")
+                        # Tenta próxima chave
+                        break
                     
                     # Se for erro 404 (modelo não encontrado), tenta próximo modelo
                     if "404" in error_msg or "not found" in error_msg:
@@ -467,7 +500,7 @@ REGRAS OBRIGATÓRIAS:
                     if (key_index == len(AVAILABLE_KEYS) - 1 and 
                         modelo == modelos_para_testar[-1]):
                         print(f"❌ TODAS AS {len(AVAILABLE_KEYS)} CHAVES E {len(modelos_para_testar)} MODELOS FALHARAM!")
-                        print(f"❌ ERRO FINAL: {type(e).__name__}")
+                        print(f"❌ ERRO FINAL: {error_type}")
                         print(f"❌ MENSAGEM: {str(e)}")
                         import traceback
                         print(f"❌ TRACEBACK: {traceback.format_exc()}")
