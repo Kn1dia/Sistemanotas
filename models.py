@@ -32,3 +32,20 @@ class Nota(Base):
     
     # Relacionamento com usuário
     user = relationship("User", back_populates="notas")
+
+class Item(Base):
+    """
+    Modelo de item individual de uma nota fiscal
+    (Opcional - pode ser usado se quiser separar itens em tabela própria)
+    """
+    __tablename__ = "itens"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    nota_id = Column(String, ForeignKey("notas.id"))
+    nome = Column(String)
+    valor = Column(Float)
+    quantidade = Column(Integer)
+    categoria = Column(String)
+    
+    # Relacionamento com nota
+    nota = relationship("Nota")
