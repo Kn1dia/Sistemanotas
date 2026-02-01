@@ -11,7 +11,8 @@
   }
   
   * {
-    @apply border-border;
+    /* Trocamos border-border por border-gray-700 para o build aceitar */
+    @apply border-gray-700; 
   }
   
   html {
