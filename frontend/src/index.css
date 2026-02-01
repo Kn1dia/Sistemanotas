@@ -1,10 +1,41 @@
-@tailwind base;
+O problema é o conflito com o .gitignore da raiz.
+
+Vamos ajustar:
+1. Em vez de criar em `src/data`, crie uma pasta chamada `src/mocks`.
+2. Crie o arquivo `src/mocks/mockData.js` com o conteúdo combinado.
+3. Ajuste os imports dos componentes para buscarem de `../mocks/mockData`.
+
+Pode continuar a implementação dos componentes (Header, DashboardCards, Chart, etc) seguindo esse novo caminho.@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Configuração Global Simples */
-body {
-  background-color: #0f172a; /* Cor brand-dark direta para evitar erros */
-  color: white;
-  font-family: sans-serif;
+@layer base {
+  body {
+    @apply bg-brand-dark text-white font-sans antialiased;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+  
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-brand-green hover:bg-brand-green/90 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl;
+  }
+  
+  .card {
+    @apply bg-brand-card rounded-xl p-6 shadow-lg border border-gray-700/50;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-green to-brand-purple bg-clip-text text-transparent;
+  }
 }
