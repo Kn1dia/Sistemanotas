@@ -15,6 +15,15 @@ from sqlalchemy.orm import Session
 # Importações do banco de dados
 from database import get_db, init_db
 from models import User, Nota
+import sys
+import os
+
+# Adiciona a pasta atual ao caminho de busca do Python
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+# Agora os seus imports vão funcionar:
+from database import get_db, init_db
+from models import Nota, Item
 
 # Carregar variáveis de ambiente da pasta raiz
 load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
