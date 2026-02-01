@@ -225,22 +225,24 @@ def calcular_dashboard_data(notas: list) -> Dict[str, Any]:
     categorias_valores = {}
     for nota in notas:
         # Desserializa itens da nota
+        # Desserializa itens da nota
         try:
-            if isinstance(nota.itens, str):
-                itens = json.loads(nota.itens)
-            elif isinstance(nota.itens, list):
-                itens = nota.itens
-            else:
-                print(f"⚠️ Tipo inesperado de itens: {type(nota.itens)}")
-                itens = []
-        except json.JSONDecodeError as e:
-            print(f"❌ Erro ao desserializar itens da nota {nota.id}: {e}")
-            print(f"   Conteúdo: {nota.itens[:100] if nota.itens else 'None'}")
-            itens = []
+            itens_brutos = nota.itens
+            
+            # Camada 1: Se for string, tenta carregar
+            if isinstance(itens_brutos, str):
+                itens_brutos = json.loads(itens_brutos)
+            
+            # Camada 2: O segredo! Se carregou e AINDA é string, carrega de novo
+            # Isso resolve o erro de "letra por letra"
+            if isinstance(itens_brutos, str):
+                itens_brutos = json.loads(itens_brutos)
+                
+            itens = itens_brutos if isinstance(itens_brutos, list) else []
+            
         except Exception as e:
-            print(f"❌ Erro inesperado ao processar itens: {type(e).__name__} - {e}")
+            print(f"❌ Erro ao limpar itens: {e}")
             itens = []
-        
         # Agrupa por categoria de CADA ITEM
         for item in itens:
             if not isinstance(item, dict):
@@ -437,7 +439,7 @@ REGRAS OBRIGATÓRIAS:
         
         # ✅ SISTEMA DE RODÍZIO DE CHAVES COM RESILIÊNCIA
         modelos_para_testar = [
-            "gemini-2.5-flash",       # Tentativa 1: O mais novo disponível
+                  # Tentativa 1: O mais novo disponível
             "gemini-flash-latest",    # Tentativa 2: O alias estável
             "gemini-2.0-flash-exp",   # Tentativa 3: Experimental
             "gemini-1.5-pro-latest"   # Tentativa 4: Backup robusto
