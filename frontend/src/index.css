@@ -1,11 +1,4 @@
-O problema é o conflito com o .gitignore da raiz.
-
-Vamos ajustar:
-1. Em vez de criar em `src/data`, crie uma pasta chamada `src/mocks`.
-2. Crie o arquivo `src/mocks/mockData.js` com o conteúdo combinado.
-3. Ajuste os imports dos componentes para buscarem de `../mocks/mockData`.
-
-Pode continuar a implementação dos componentes (Header, DashboardCards, Chart, etc) seguindo esse novo caminho.@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
